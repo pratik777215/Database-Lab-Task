@@ -140,5 +140,15 @@ from employee
 where salary > (select avg(salary) from employee);
 
 # create a view named high salary employees that shows employees with salary greater than 60000.
+CREATE VIEW HighSalaryEmployeess AS
+SELECT EmpID, FirstName, LastName, Salary
+FROM EMPLOYEE
+WHERE Salary > 5000;
 
+
+# To check the view
+SELECT * FROM HighSalaryEmployeess;
 # create an index on the LastName  columns of the EMPLOYEE table.
+# create an index on the LastName column of the EMPLOYEE table
+CREATE INDEX idx_lastname
+ON EMPLOYEE(LastName);
