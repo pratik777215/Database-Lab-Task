@@ -1,0 +1,174 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\pariy> mongosh
+Current Mongosh Log ID: 69c09da255ae735896114029
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.8.1
+MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+PS C:\Users\pariy> mongosh "mongodb+srv://cluster0.6lcub7q.mongodb.net/" --apiVersion 1 --username pariyarpratik450_db_user
+Enter password: ************
+Current Mongosh Log ID: 69c0a024b61e18a9af114029
+Connecting to:          mongodb+srv://<credentials>@cluster0.6lcub7q.mongodb.net/?appName=mongosh+2.8.1
+Using MongoDB:          8.0.20 (API Version 1)
+Using Mongosh:          2.8.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+Atlas atlas-kmlqxt-shard-0 [primary] test> use First_DatabaseDB
+switched to db First_DatabaseDB
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> m
+|   name: "Ram",
+|   age: 19
+| })
+Uncaught:
+SyntaxError: Missing semicolon. (3:5)
+
+  1 | m
+  2 |   name: "Ram",
+> 3 |   age: 19
+    |      ^
+  4 | })
+  5 |
+
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.insertOne({name: "Ram", age: 19})
+{
+  acknowledged: true,
+  insertedId: ObjectId('69c0a4f9b61e18a9af11402a')
+}
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find().pretty
+[Function: pretty] {
+  returnType: 'this',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  apiVersions: [ 0, Infinity ],
+  topologies: [ 'ReplSet', 'Standalone', 'Sharded', 'LoadBalanced' ],
+  returnsPromise: false,
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  newShellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find().pretty()
+[ { _id: ObjectId('69c0a4f9b61e18a9af11402a'), name: 'Ram', age: 19 } ]
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find({age: {$gt:18}}).pretty()
+[ { _id: ObjectId('69c0a4f9b61e18a9af11402a'), name: 'Ram', age: 19 } ]
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.insertMany({name: "Sita",age:19})
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.insertMany([{name: "Luna",age: 19, grade: "A"},{name: "Arpit", age: 20, grade: "B"},{name: "Pratik", age: 20, grade: "B"},{name: "Riwaj", age: 20, grade: "A"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69c0a7d6b61e18a9af11402b'),
+    '1': ObjectId('69c0a7d6b61e18a9af11402c'),
+    '2': ObjectId('69c0a7d6b61e18a9af11402d'),
+    '3': ObjectId('69c0a7d6b61e18a9af11402e')
+  }
+}
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.updateOne({name: "Luna"},{$set: {grade: "B"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find().pretty
+[Function: pretty] {
+  returnType: 'this',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  apiVersions: [ 0, Infinity ],
+  topologies: [ 'ReplSet', 'Standalone', 'Sharded', 'LoadBalanced' ],
+  returnsPromise: false,
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  newShellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find().pretty()
+[
+  { _id: ObjectId('69c0a4f9b61e18a9af11402a'), name: 'Ram', age: 19 },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402b'),
+    name: 'Luna',
+    age: 19,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402c'),
+    name: 'Arpit',
+    age: 20,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402d'),
+    name: 'Pratik',
+    age: 20,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402e'),
+    name: 'Riwaj',
+    age: 20,
+    grade: 'A'
+  }
+]
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.deleteOne({name: "Arpit"})
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find().pretty()
+[
+  { _id: ObjectId('69c0a4f9b61e18a9af11402a'), name: 'Ram', age: 19 },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402b'),
+    name: 'Luna',
+    age: 19,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402d'),
+    name: 'Pratik',
+    age: 20,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402e'),
+    name: 'Riwaj',
+    age: 20,
+    grade: 'A'
+  }
+]
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.countDocuments()
+4
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB> db.First_Database.find().sort({age: 1}).pretty()
+[
+  { _id: ObjectId('69c0a4f9b61e18a9af11402a'), name: 'Ram', age: 19 },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402b'),
+    name: 'Luna',
+    age: 19,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402d'),
+    name: 'Pratik',
+    age: 20,
+    grade: 'B'
+  },
+  {
+    _id: ObjectId('69c0a7d6b61e18a9af11402e'),
+    name: 'Riwaj',
+    age: 20,
+    grade: 'A'
+  }
+]
+Atlas atlas-kmlqxt-shard-0 [primary] First_DatabaseDB>
